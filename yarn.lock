@@ -4656,6 +4656,11 @@ koa@^2.8.1:
     type-is "^1.6.16"
     vary "^1.1.2"
 
+lambda-api@^0.10.7:
+  version "0.10.7"
+  resolved "https://registry.yarnpkg.com/lambda-api/-/lambda-api-0.10.7.tgz#33a772aafd7f902188ae0865048c24a91871d474"
+  integrity sha512-PEentCSz6GUpRxdCc/7Nq6bmjNvjjXJmLV3Y2h366NWU7vOE7sqdVtTTyXaf7TMmyjyIoBM9y/5fiSBdz+3K3g==
+
 lerna@^3.20.2:
   version "3.22.1"
   resolved "https://registry.yarnpkg.com/lerna/-/lerna-3.22.1.tgz#82027ac3da9c627fd8bf02ccfeff806a98e65b62"

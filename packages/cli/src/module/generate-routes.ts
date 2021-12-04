@@ -21,24 +21,18 @@ export const generateRoutes = async (
 
   const routeGenerator = new RouteGenerator(metadata, routesConfig);
 
-  let pathTransformer = convertBracesPathParams;
-  let template;
+  const pathTransformer = convertBracesPathParams;
 
-  switch (routesConfig.middleware) {
-    case 'express':
-      template = path.join(__dirname, '..', 'routeGeneration/templates/express.hbs');
-      break;
-    case 'hapi':
-      template = path.join(__dirname, '..', 'routeGeneration/templates/hapi.hbs');
-      pathTransformer = (path: string) => path;
-      break;
-    case 'koa':
-      template = path.join(__dirname, '..', 'routeGeneration/templates/koa.hbs');
-      break;
-    default:
-      template = path.join(__dirname, '..', 'routeGeneration/templates/express.hbs');
-  }
+  const DEFAULT_TEMPLATES = {
+    express: 'express',
+    hapi: 'hapi',
+    koa: 'koa',
+    lambdaAPI: 'lambda-api',
+  };
 
+  const defaultTemplate = `${DEFAULT_TEMPLATES[routesConfig.middleware || 'express'] || 'express'}.hbs`;
+
+  let template = path.join(__dirname, '..', `routeGeneration`, 'templates', defaultTemplate);
   if (routesConfig.middlewareTemplate) {
     template = routesConfig.middlewareTemplate;
   }

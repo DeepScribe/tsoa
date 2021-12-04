@@ -15,6 +15,7 @@
     "generation",
     "express",
     "hapi.js",
+    "lambda-api",
     "koa"
   ],
   "scripts": {

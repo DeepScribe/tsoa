@@ -100,6 +100,82 @@ const log = async <T>(label: string, fn: () => Promise<T>) => {
         metadata,
       ),
     ),
+    log('LambdaAPI Route Generation', () =>
+      generateRoutes(
+        {
+          noImplicitAdditionalProperties: 'silently-remove-extras',
+          authenticationModule: './fixtures/lambda-api/authentication.ts',
+          basePath: '/v1',
+          entryFile: './fixtures/lambda-api/server.ts',
+          middleware: 'lambdaAPI',
+          routesDir: './fixtures/lambda-api',
+        },
+        undefined,
+        undefined,
+        metadata,
+      ),
+    ),
+    log('LambdaAPI Router Route Generation', () =>
+      generateRoutes(
+        {
+          noImplicitAdditionalProperties: 'silently-remove-extras',
+          authenticationModule: './fixtures/lambda-api-router/authentication.ts',
+          entryFile: './fixtures/lambda-api-router/server.ts',
+          middleware: 'lambdaAPI',
+          routesDir: './fixtures/lambda-api-router',
+        },
+        undefined,
+        undefined,
+        metadata,
+      ),
+    ),
+    log('LambdaAPI Route Generation, OpenAPI3, noImplicitAdditionalProperties', () =>
+      generateRoutes(
+        {
+          noImplicitAdditionalProperties: 'throw-on-extras',
+          authenticationModule: './fixtures/lambda-api-openapi3/authentication.ts',
+          basePath: '/v1',
+          entryFile: './fixtures/server.ts',
+          middleware: 'lambdaAPI',
+          routesDir: './fixtures/lambda-api-openapi3',
+        },
+        undefined,
+        undefined,
+        metadata,
+      ),
+    ),
+    log('LambdaAPI Dynamic Route Generation', () =>
+      generateRoutes(
+        {
+          noImplicitAdditionalProperties: 'silently-remove-extras',
+          authenticationModule: './fixtures/lambda-api/authentication.ts',
+          basePath: '/v1',
+          controllerPathGlobs: ['./fixtures/controllers/*'],
+          entryFile: './fixtures/lambda-api-dynamic-controllers/server.ts',
+          middleware: 'lambdaAPI',
+          routesDir: './fixtures/lambda-api-dynamic-controllers',
+        },
+        undefined,
+        undefined,
+        metadata,
+      ),
+    ),
+    log('LambdaAPI Route Generation with useSuccessResponseCode feature', () =>
+      generateRoutes(
+        {
+          noImplicitAdditionalProperties: 'silently-remove-extras',
+          authenticationModule: './fixtures/lambda-api/authentication.ts',
+          basePath: '/v1',
+          entryFile: './fixtures/lambda-api-success-code/server.ts',
+          middleware: 'lambdaAPI',
+          routesDir: './fixtures/lambda-api-success-code',
+          useSuccessResponseCode: true,
+        },
+        undefined,
+        undefined,
+        metadata,
+      ),
+    ),
     log('Koa Route Generation', () =>
       generateRoutes(
         {
